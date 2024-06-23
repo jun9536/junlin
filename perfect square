@@ -1,0 +1,21 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+	int t,n,m,k=0,sum=0,a=1;
+	cin>>t;
+	while(k<t){
+		cin>>n>>m;
+		for(int i=n;i<=m;i++){
+			for(int j=1;j<=i;j++){
+				if(i==j*j){
+					sum+=i;
+					break;
+				}
+			}
+		}
+		cout<<"Case "<<a<<": "<<sum<<"\n";
+		k++;
+		a++;
+		sum=0;
+	}
+}
