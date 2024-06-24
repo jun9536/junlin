@@ -1,0 +1,17 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main(){
+	int x,y,l,r,n,a;
+	while(cin>>x>>y>>l>>r>>n){
+		a=0;
+		int X,Y,L;
+		for(int i=0;i<n;i++){
+			cin>>X>>Y>>L;
+			if(sqrt((X-x)*(X-x)+(Y-y)*(Y-y))<=r&&L<=l){
+				a=a+1;
+				}
+		
+		}
+		cout<<a;
+	}
+}
