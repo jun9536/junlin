@@ -1,0 +1,73 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+	int n,c=0,start=-1,end=0,max=0,min=1e9+7,d,e,f=0; 
+	cin>>n;
+	int a[n],b[n];
+	for(int i=0;i<n;i++){
+		cin>>a[i];
+	}
+	for(int i=0;i<n;i++){
+		cin>>b[i];
+	}
+	for(int i=0;i<n;i++){
+		if(a[i]==-1&&start==-1){
+			start=i;
+			for(int j=0;j<i;j++){
+				cout<<b[j]<<" ";
+			}
+			cout<<-1<<" ";
+		}
+	}
+	for(int i=n-1;i>0;i--){
+		if(a[i]==-1&&end==0){
+			end=i;
+		}
+	}
+	c=start+1;
+	for(int i=start+1;i<end+1;i++){
+			f=f+1;
+		if(b[i]!=-1){
+			if(a[i]>max){
+				max=a[i];
+			}
+			if(a[i]<min){
+			   min=a[i];
+			   }
+		
+		}
+		if(b[i]==-1){
+			for(int j=c;j<i;j++){
+				if(a[j]==max){
+					d=b[j];
+				}
+				if(a[j]==min){
+					e=b[j];
+				}
+			}
+			for(int j=c;j<i;j++){
+				if(b[j]==d){
+					b[j]=e;
+				}
+				else if(b[j]==e){
+					b[j]=d;
+				}
+			}
+			for(int j=c;j<i+1;j++){
+				cout<<b[j]<<" ";
+			}
+			max=0;
+			min=1e9+7;
+			c=c+f;
+			f=0; 
+		}
+	}
+	for(int i=n-1;i>0;i--){
+		if(i==end){
+		for(int j=i+1;j<n;j++){
+			cout<<b[j]<<" ";
+		}
+			
+		}
+	}
+	}
