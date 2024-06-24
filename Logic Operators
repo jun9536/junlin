@@ -1,0 +1,21 @@
+#include <iostream>
+using namespace std;
+int main(){
+	int a,b,c;
+	while(cin>>a>>b>>c){
+		if(a==0&&b==0&&c==0)cout<<"AND"<<endl<<"OR"<<endl<<"XOR"<<endl;
+		else if(a==0&&b!=0){
+			if(c==0)cout<<"AND"<<endl;
+			else if (c==1)cout<<"OR"<<endl<<"XOR"<<endl;
+		}
+        else if(a!=0&&b==0){
+        	if(c==0)cout<<"AND"<<endl;
+			else if (c==1)cout<<"OR"<<endl<<"XOR"<<endl;
+		}
+	    else if(a!=0&&b!=0){
+        	if(c==0)cout<<"XOR"<<endl;
+			else if (c==1)cout<<"AND"<<endl<<"OR"<<endl;
+		}
+		else cout<<"IMPOSSIBLE"<<endl;
+	}
+}
