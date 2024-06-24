@@ -1,0 +1,96 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+#define EMPTY	-1
+
+const int dirX[4] = {-1, 0, 1, 0};	//left up right down
+const int dirY[4] = {0, -1, 0, 1};	// 0   1    2    3
+
+int r, c, k, m;
+
+int city[52][52];
+int move[52][52];
+
+int max(int, int);
+int min(int, int);
+
+int main(void) {
+	//readin
+	scanf("%d%d%d%d", &r, &c, &k, &m);
+	for(int i = 1; i <= r; i++) {
+		for(int j = 1; j <= c; j++) {
+			scanf("%d", &city[i][j]);
+		}
+	}
+	
+	//init wall
+	for(int i = 0; i < 52; i++) {
+		city[0][i] = EMPTY;
+		city[i][0] = EMPTY;
+	}
+	for(int i = 1; i <= r + 1; i++) {
+		city[i][c + 1] = EMPTY;
+	}
+	for(int i = 1; i <= c + 1; i++) {
+		city[r + 1][i] = EMPTY;
+	}
+	
+	//solve
+	int neighbor;
+	for(int day = 1; day <= m; day++) {	//repeat for m days
+		//empty move arr
+		for(int i = 1; i <= r; i++) {
+			for(int j = 1; j <= c; j++) {
+				move[i][j] = 0;
+			}
+		}
+		//move in & out
+		for(int i = 1; i <= r; i++) {
+			for(int j = 1; j <= c; j++) {
+				neighbor = 0;
+				for(int dir = 0; dir <= 3; dir++) {	//find neighbors
+					if(city[i + dirY[dir]][j + dirX[dir]] != EMPTY) {
+						neighbor++;
+						move[i + dirY[dir]][j + dirX[dir]] += city[i][j] / k;
+					}
+				}
+				move[i][j] -= city[i][j] / k * neighbor;
+			}
+		}
+		//update
+		for(int i = 1; i <= r; i++) {
+			for(int j = 1; j <= c; j++) {
+				city[i][j] += move[i][j];
+			}
+		}
+	}
+	
+	//search for max & min
+	int maximum = 0;
+	int minimum = 1000;
+	for(int i = 1; i <= r; i++) {
+		for(int j = 1; j <= c; j++) {
+			if(city[i][j] != EMPTY) {
+				maximum = max(maximum, city[i][j]);
+				minimum = min(minimum, city[i][j]);
+			}
+		}
+	}
+	
+	//print
+	printf("%d\n%d\n", minimum, maximum);
+	
+	return 0;
+}
+
+int max(int a, int b) {
+	if(a > b)
+		return a;
+	return b;
+}
+
+int min(int a, int b) {
+	if(a < b)
+		return a;
+	return b;
+}
