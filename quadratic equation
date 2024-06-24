@@ -1,0 +1,25 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main(){
+	int a,b,c,d,e,f,n,y1,y2,g,h,j,k,l;
+	while(cin>>a>>b>>c>>d>>e>>f>>n){
+		y1=c;
+		y2=d*n*n+e*n+f;
+		k=y1+y2;
+		y1=a*n*n+b*n+c;
+		y2=f;
+		l=y1+y2;
+		if(k>l)j=k;
+		else j=l;
+		for(int i=0;i<=n;i++){
+			g=n-i;
+			y1=a*i*i+b*i+c;
+			y2=d*g*g+e*g+f;
+			h=y1+y2;
+			if(h>j){
+			j=h;
+			}
+		}
+		cout<<j<<endl;
+	}
+	}
