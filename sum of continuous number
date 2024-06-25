@@ -1,0 +1,23 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+	long long int a,n;
+	cin>>a;
+	for(int i=0;i<a;i++){
+		cin>>n;
+		int t[n];
+		for(int j=0;j<n;j++){
+			cin>>t[j];
+		}
+		long long int b=n,c=0,d,sum1=0,sum2=-100000;
+		for(int j=c;j<n;j++){
+			sum1=0;
+			for(int k=c;k<n;k++){
+				sum1+=t[k];
+				if(sum1>sum2) sum2=sum1;
+			}
+			c++;
+		}
+		cout<<sum2<<'\n';
+	}
+}
